@@ -1,4 +1,4 @@
-# simple-isomorphic-react-boilerplate
+# Simple isomorphic react-boilerplate
 
 Trying to understand isomorphic webapps and is tired of "Simple boilerplates" with 200 MB of code?
 This is a REALLY simple boilerplate with as few confusing elements as possible. Uses react, react-router and express.
