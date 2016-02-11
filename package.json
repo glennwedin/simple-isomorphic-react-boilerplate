@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "gulp & babel-node --presets es2015,react ./server.js",
+    "start-prod": "babel-node --presets es2015,react ./server.js",
     "build": "gulp"
   },
   "author": "Glenn Wedin <glenn.wedin@gmail.com> (http://www.wedinweb.no)",
