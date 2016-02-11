@@ -1,8 +1,7 @@
 {
-  "name": "rekt",
+  "name": "simple-isomorphic-react-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "gulp & babel-node --presets es2015,react ./server.js",
     "build": "gulp"
