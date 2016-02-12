@@ -9,8 +9,8 @@ var mainroute = (history) => {
 	return (<Router history={history}>
 				<Route path="/" component={MainComponent} >
 					<Route path="sub" component={SubComponent} />
+					<Route path="another" component={AnotherComponent} />
 				</Route>
-				<Route path="/another" component={AnotherComponent} />
 			</Router>)
 };
 

@@ -10,4 +10,4 @@ import mainroute from "./routes/routes";
 var routing = mainroute(browserHistory);
 
 
-ReactDOM.render(routing, document.getElementById('app'));
+ReactDOM.render(routing, document);
