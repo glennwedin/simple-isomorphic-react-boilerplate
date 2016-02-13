@@ -5,10 +5,6 @@ export default class MainComponent extends React.Component {
 
 	constructor () {
 		super();
-
-		this.state = {
-			'name': 'Glenn Wedin'
-		}
 	}
 
 	render () {
