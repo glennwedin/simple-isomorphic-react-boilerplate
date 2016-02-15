@@ -18,6 +18,6 @@ Builds the client with gulp and runs the server through npm
 
 ### Build client only
 ```
-npm build
+gulp
 
 ```

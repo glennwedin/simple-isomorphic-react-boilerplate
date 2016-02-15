@@ -7,5 +7,4 @@ import mainroute from "./routes/routes";
 
 var routing = mainroute(browserHistory);
 
-
 ReactDOM.render(routing, document);

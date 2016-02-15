@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "gulp & babel-node --presets es2015,react ./server.js",
-    "start-prod": "babel-node --presets es2015,react ./server.js",
-    "build": "gulp"
+    "start": "babel-node --presets es2015,react ./src/server.js"
   },
   "author": "Glenn Wedin <glenn.wedin@gmail.com> (http://www.wedinweb.no)",
   "license": "MIT",

@@ -11,7 +11,7 @@ var mainroute = (history) => {
 					<Route path="sub" component={SubComponent} />
 					<Route path="another" component={AnotherComponent} />
 				</Route>
-			</Router>)
+			</Router>);
 };
 
 export default mainroute;
