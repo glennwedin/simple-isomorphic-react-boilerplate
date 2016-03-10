@@ -8,7 +8,7 @@ import path from "path";
 var app = express();
 
 //Point to static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public/'));
 
 app.get('*', function (req, res) {
 	let routes = mainroute();

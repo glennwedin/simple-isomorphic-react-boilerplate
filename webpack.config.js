@@ -14,10 +14,26 @@ module.exports = [
             loaders: [
                 {
                     test: /\.js$/,
-                    loader: 'babel' // <-- changed line
-                    //exclude: /node_modules/
+                    loader: 'babel'
                 },
                 { test:  /\.json$/, loader: 'json-loader' },
+            ]
+        }
+    },
+    {
+        name: 'client',
+        entry: "./src/client.js",
+        output: {
+            path: __dirname,
+            filename: "./public/js/app.js"
+        },
+        module: {
+            loaders: [
+                {
+                    test: /\.js$/,
+                    loader: 'babel',
+                    exclude: /node_modules/
+                }
             ]
         }
     }
