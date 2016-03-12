@@ -1,8 +1,9 @@
 # Simple isomorphic react-boilerplate
 
-Trying to understand isomorphic webapps and is tired of "Simple boilerplates" with 200 MB of code?
-This is a REALLY simple boilerplate with as few confusing elements as possible. Uses react, react-router and express.
-Builds the client with gulp and runs the server through npm
+Trying to understand isomorphic webapps and tired of "Simple boilerplates" with 200 MB of code?
+This is a REALLY simple boilerplate with as few confusing elements as possible. The entire applications code lies under /src. Uses react, react-router and express.
+Build the client and server with webpack using "npm build".
+
 
 
 ## Start
@@ -11,13 +12,8 @@ Builds the client with gulp and runs the server through npm
 
 ```
 1. npm install
-2. npm start
-3. open browser at localhost:3000
-
-```
-
-### Build client only
-```
-gulp
+2. npm build
+3. npm start
+4. open browser at localhost:3000
 
 ```
