@@ -6,12 +6,14 @@ import AnotherComponent from "../components/AnotherComponent";
 
 var mainroute = (history) => {
 	history = history || null;
-	return (<Router history={history}>
+	return (
+			<Router history={history}>
 				<Route path="/" component={MainComponent} >
 					<Route path="sub" component={SubComponent} />
 					<Route path="another" component={AnotherComponent} />
 				</Route>
-			</Router>);
+			</Router>
+		);
 };
 
 export default mainroute;

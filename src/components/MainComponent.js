@@ -1,26 +1,47 @@
 import React from "react";
 import { Link } from "react-router";
 
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import MainApp from '../reducers/reducers';
+
 import AddItem from '../containers/AddItem';
+import ItemList from './ItemList';
 
-let store = createStore(MainApp);
+import { Provider } from 'react-redux';
+import MainAppReducer from '../reducers/reducers';
+import { createStore } from 'redux';
 
-export default class MainComponent extends React.Component {
+let store = createStore(MainAppReducer);
 
-	constructor () {
-		super();
+
+class MainComponent extends React.Component {
+
+	constructor (props) {
+		super(props);
+
+		this.state = {
+			itemsFromRedux: store.getState().items
+		};
 	}
 
 	componentDidMount() {
+		/*
+		this.setState({
+			itemsFromRedux: store.getState().items
+		});
+		*/
+		
 		store.subscribe(() => {
-			console.log('ypp', store.getState());
-		});   
+			let items = store.getState();
+			//console.log('ypp', items);
+			this.setState({
+				itemsFromRedux: items.items
+			})
+		});
 	}
 
 	render () {
+		/*
+			
+		*/
 		return (
 				<Provider store={store}>
 					<html lang="en">
@@ -36,6 +57,7 @@ export default class MainComponent extends React.Component {
 							<li><Link to="another">Go to another subcomponent</Link></li>
 						</ul>
 						<AddItem />
+						<ItemList items={this.state.itemsFromRedux}/>
 						<div id="app">{this.props.children}</div>
 						<script type="text/javascript" src="js/app.js"></script>
 						</body>
@@ -44,3 +66,4 @@ export default class MainComponent extends React.Component {
 			);
 	}
 }
+export default MainComponent;
