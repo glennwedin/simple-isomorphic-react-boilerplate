@@ -48130,11 +48130,11 @@
 
 	var _MainComponent2 = _interopRequireDefault(_MainComponent);
 
-	var _SubComponent = __webpack_require__(324);
+	var _SubComponent = __webpack_require__(325);
 
 	var _SubComponent2 = _interopRequireDefault(_SubComponent);
 
-	var _AnotherComponent = __webpack_require__(325);
+	var _AnotherComponent = __webpack_require__(326);
 
 	var _AnotherComponent2 = _interopRequireDefault(_AnotherComponent);
 
@@ -48184,11 +48184,11 @@
 
 	var _reactRedux = __webpack_require__(298);
 
-	var _reducers = __webpack_require__(323);
+	var _actions = __webpack_require__(321);
 
-	var _reducers2 = _interopRequireDefault(_reducers);
+	var _Store = __webpack_require__(323);
 
-	var _redux = __webpack_require__(305);
+	var _Store2 = _interopRequireDefault(_Store);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48197,8 +48197,13 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	/*
+	import MainAppReducer from '../reducers/reducers';
+	import { createStore } from 'redux';
+	*/
 
-	var store = (0, _redux.createStore)(_reducers2.default);
+	//let store = createStore(MainAppReducer);
+
 
 	var MainComponent = function (_React$Component) {
 		_inherits(MainComponent, _React$Component);
@@ -48208,8 +48213,11 @@
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MainComponent).call(this, props));
 
+			var state = _Store2.default.getState();
+			console.log(state);
 			_this.state = {
-				itemsFromRedux: store.getState().items
+				itemList: state.items,
+				user: state.user
 			};
 			return _this;
 		}
@@ -48225,13 +48233,20 @@
 	   });
 	   */
 
-				store.subscribe(function () {
-					var items = store.getState();
-					//console.log('ypp', items);
+				_Store2.default.subscribe(function () {
+					var state = _Store2.default.getState();
+					console.log('Data from redux', state);
 					_this2.setState({
-						itemsFromRedux: items.items
+						itemList: state.items,
+						user: state.user
 					});
 				});
+			}
+		}, {
+			key: "changeName",
+			value: function changeName() {
+				//console.log(store)
+				_Store2.default.dispatch((0, _actions.editUser)('Navn Navnesen', 25, 'mail@wedinweb.no'));
 			}
 		}, {
 			key: "render",
@@ -48241,7 +48256,7 @@
 	   */
 				return _react2.default.createElement(
 					_reactRedux.Provider,
-					{ store: store },
+					{ store: _Store2.default },
 					_react2.default.createElement(
 						"html",
 						{ lang: "en" },
@@ -48262,6 +48277,17 @@
 								"h1",
 								null,
 								"This is the main component"
+							),
+							_react2.default.createElement(
+								"p",
+								null,
+								"This component belongs to ",
+								this.state.user.name
+							),
+							_react2.default.createElement(
+								"button",
+								{ onClick: this.changeName.bind(this) },
+								"Change name"
 							),
 							_react2.default.createElement(
 								"ul",
@@ -48295,7 +48321,7 @@
 								)
 							),
 							_react2.default.createElement(_AddItem2.default, null),
-							_react2.default.createElement(_ItemList2.default, { items: this.state.itemsFromRedux }),
+							_react2.default.createElement(_ItemList2.default, { items: this.state.itemList }),
 							_react2.default.createElement(
 								"div",
 								{ id: "app" },
@@ -49980,10 +50006,15 @@
 		value: true
 	});
 	exports.addItem = addItem;
+	exports.editUser = editUser;
 	var ADD_ITEM = exports.ADD_ITEM = 'ADD_ITEM';
+	var EDIT_USER = exports.EDIT_USER = 'EDIT_USER';
 
 	function addItem(text) {
 		return { type: ADD_ITEM, text: text };
+	}
+	function editUser(name, age, mail) {
+		return { type: EDIT_USER, name: name, age: age, mail: mail };
 	}
 
 /***/ },
@@ -50058,6 +50089,28 @@
 /* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _redux = __webpack_require__(305);
+
+	var _reducers = __webpack_require__(324);
+
+	var _reducers2 = _interopRequireDefault(_reducers);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var store = (0, _redux.createStore)(_reducers2.default);
+
+	exports.default = store;
+
+/***/ },
+/* 324 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -50074,7 +50127,7 @@
 	Initial state
 	*/
 
-	var initialState = [{
+	var itemstate = [{
 		text: "Hei"
 	}, {
 		text: "Jeg er tekst"
@@ -50082,11 +50135,17 @@
 		text: "Ja, men jeg er Glenn!"
 	}];
 
+	var userstate = {
+		name: "Glenn Wedin",
+		age: 28,
+		mail: "glenn.wedin@gmail.com"
+	};
+
 	/*
 	*	Reducer
 	*/
 	function items() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+		var state = arguments.length <= 0 || arguments[0] === undefined ? itemstate : arguments[0];
 		var action = arguments[1];
 
 		switch (action.type) {
@@ -50101,14 +50160,33 @@
 		}
 	}
 
+	function user() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? userstate : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _actions.EDIT_USER:
+				console.log('Editing');
+				return {
+					name: action.name,
+					age: action.age,
+					mail: action.mail
+				};
+
+			default:
+				return state;
+		}
+	}
+
 	var MainAppReducer = (0, _redux.combineReducers)({
-		items: items
+		items: items,
+		user: user
 	});
 
 	exports.default = MainAppReducer;
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -50162,7 +50240,7 @@
 	exports.default = SubComponent;
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
