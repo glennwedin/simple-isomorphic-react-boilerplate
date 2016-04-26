@@ -11,7 +11,7 @@ import MainAppReducer from '../reducers/reducers';
 import { createStore } from 'redux';
 */
 
-import { editUser } from '../actions/actions';
+import { editUser, fetchPosts } from '../actions/actions';
 
 //let store = createStore(MainAppReducer);
 import store from '../stores/Store';
@@ -26,23 +26,20 @@ class MainComponent extends React.Component {
 		console.log(state);
 		this.state = {
 			itemList: state.items,
-			user: state.user
+			user: state.user,
+			repos: []
 		};
 	}
 
 	componentDidMount() {
-		/*
-		this.setState({
-			itemsFromRedux: store.getState().items
-		});
-		*/
-		
 		store.subscribe(() => {
 			let state = store.getState();
 			console.log('Data from redux', state);
+
 			this.setState({
 				itemList: state.items,
-				user: state.user
+				user: state.user,
+				repos: state.repos.repos
 			})
 		});
 	}
@@ -50,6 +47,10 @@ class MainComponent extends React.Component {
 	changeName () {
 		//console.log(store)
 		store.dispatch(editUser('Navn Navnesen', 25, 'mail@wedinweb.no'));
+	}
+
+	loadGithubData () {
+		store.dispatch(fetchPosts('Glenns repos'));
 	}
 
 	render () {
@@ -74,6 +75,13 @@ class MainComponent extends React.Component {
 						</ul>
 						<AddItem />
 						<ItemList items={this.state.itemList}/>
+						<strong>Github</strong>
+						<br /><button onClick={this.loadGithubData.bind(this)}>Load data from Github API</button>
+						<ul>
+							{this.state.repos.map((obj, i) => {
+								return <li key={obj.id}>{obj.name}</li>
+							})}
+						</ul>
 						<div id="app">{this.props.children}</div>
 						<script type="text/javascript" src="js/app.js"></script>
 						</body>

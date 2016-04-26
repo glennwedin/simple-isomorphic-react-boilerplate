@@ -1,4 +1,9 @@
-import { ADD_ITEM, EDIT_USER } from "../actions/actions.js";
+import { 
+	ADD_ITEM, 
+	EDIT_USER,
+	REQUEST_REPOS,
+	RECEIVE_REPOS
+} from "../actions/actions.js";
 import { combineReducers } from 'redux';
 
 /*
@@ -59,9 +64,33 @@ function user(state = userstate, action) {
 	}
 }
 
+function repos(state = {
+	isFetching: false,
+	didInvalidate: false,
+	repos: []
+}, action) {
+	switch(action.type) {
+		case REQUEST_REPOS:
+			return Object.assign({}, state, { 
+				isFetching: true, 
+				didInvalidate: false 
+			});
+		case RECEIVE_REPOS:
+			return Object.assign({}, state, {
+				isFetching: false,
+				didInvalidate: false,
+				repos: action.posts,
+				lastUpdated: action.receivedAt
+			});
+		default: 
+			return state;
+	}
+}
+ 
 const MainAppReducer = combineReducers({
 	items,
-	user
+	user,
+	repos
 });
 
 export default MainAppReducer;

@@ -9,13 +9,33 @@ export function editUser(name, age, mail) {
 }
 
 
-export function fetchPosts(subreddit) {
-	return function (dispatch) {
-		dispatch(requestPosts(subreddit))
+export const REQUEST_REPOS = 'REQUEST_REPOS'
+function requestRepos(repos) {
+  return {
+    type: REQUEST_REPOS,
+    repos
+  }
+}
 
-		return fetch(`http://www.reddit.com/r/${subreddit}.json`)
+
+export const RECEIVE_REPOS = 'RECEIVE_REPOS'
+function receiveRepos(repos, json) {
+  return {
+    type: RECEIVE_REPOS,
+    repos,
+    posts: json,
+    receivedAt: Date.now()
+  }
+}
+
+
+export function fetchPosts(repos) {
+	return function (dispatch) {
+		dispatch(requestRepos(repos)) //Request
+
+		return fetch('https://api.github.com/users/glennwedin/repos')
 			.then(response => response.json())
-			.then(json => dispatch(receivePosts(subreddit, json))
+			.then(json => dispatch(receiveRepos(repos, json))
 	  	).catch(err => {
 			console.log(err)
 		});
