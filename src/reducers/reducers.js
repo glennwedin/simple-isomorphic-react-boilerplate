@@ -10,6 +10,7 @@ import { combineReducers } from 'redux';
 Initial state
 */
 
+/*
 let itemstate = [
 	{
 		text: "Hei"
@@ -27,12 +28,13 @@ let userstate = {
 	age: 28,
 	mail: "glenn.wedin@gmail.com"
 }
-
+*/
 
 
 /*
 *	Reducer
 */
+/*
 function items (state = itemstate, action) {
 	switch(action.type) {
 		case ADD_ITEM: 
@@ -86,11 +88,10 @@ function repos(state = {
 			return state;
 	}
 }
+*/
  
 const MainAppReducer = combineReducers({
-	items,
-	user,
-	repos
+	//items
 });
 
 export default MainAppReducer;

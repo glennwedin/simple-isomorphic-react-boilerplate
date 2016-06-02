@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node server.js",
-    "dev": "webpack && node server.js",
+    "dev:watch": "webpack --watch",
     "build": "webpack --optimize-minimize"
   },
   "author": "Glenn Wedin <glenn.wedin@gmail.com> (http://www.wedinweb.no)",
@@ -26,7 +26,11 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browser-sync": "^2.11.1",
+    "css-loader": "^0.23.1",
     "json-loader": "^0.5.4",
+    "node-sass": "^3.7.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.12.14"
   }
 }
