@@ -1,5 +1,5 @@
-import { 
-	ADD_ITEM, 
+import {
+	ADD_ITEM,
 	EDIT_USER,
 	REQUEST_REPOS,
 	RECEIVE_REPOS
@@ -10,7 +10,7 @@ import { combineReducers } from 'redux';
 Initial state
 */
 
-/*
+
 let itemstate = [
 	{
 		text: "Hei"
@@ -22,7 +22,7 @@ let itemstate = [
 		text: "Ja, men jeg er Glenn!"
 	}
 ]
-
+/*
 let userstate = {
 	name: "Glenn Wedin",
 	age: 28,
@@ -34,10 +34,10 @@ let userstate = {
 /*
 *	Reducer
 */
-/*
+
 function items (state = itemstate, action) {
 	switch(action.type) {
-		case ADD_ITEM: 
+		case ADD_ITEM:
 			console.log('Adding item', action);
 			return [
 				...state,
@@ -46,11 +46,11 @@ function items (state = itemstate, action) {
 				}
 			]
 
-		default: 
+		default:
 			return state;
 	}
 }
-
+/*
 function user(state = userstate, action) {
 	switch(action.type) {
 		case EDIT_USER:
@@ -61,7 +61,7 @@ function user(state = userstate, action) {
 				mail: action.mail
 			}
 
-		default: 
+		default:
 			return state;
 	}
 }
@@ -73,9 +73,9 @@ function repos(state = {
 }, action) {
 	switch(action.type) {
 		case REQUEST_REPOS:
-			return Object.assign({}, state, { 
-				isFetching: true, 
-				didInvalidate: false 
+			return Object.assign({}, state, {
+				isFetching: true,
+				didInvalidate: false
 			});
 		case RECEIVE_REPOS:
 			return Object.assign({}, state, {
@@ -84,19 +84,14 @@ function repos(state = {
 				repos: action.posts,
 				lastUpdated: action.receivedAt
 			});
-		default: 
+		default:
 			return state;
 	}
 }
 */
- 
+
 const MainAppReducer = combineReducers({
-	//items
+	items
 });
 
 export default MainAppReducer;
-
-
-
-
-
