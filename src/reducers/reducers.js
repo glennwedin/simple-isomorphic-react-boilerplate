@@ -10,7 +10,6 @@ import { combineReducers } from 'redux';
 Initial state
 */
 
-
 let itemstate = [
 	{
 		text: "Hei"
@@ -22,13 +21,13 @@ let itemstate = [
 		text: "Ja, men jeg er Glenn!"
 	}
 ]
-/*
+
 let userstate = {
 	name: "Glenn Wedin",
 	age: 28,
 	mail: "glenn.wedin@gmail.com"
 }
-*/
+
 
 
 /*
@@ -50,7 +49,7 @@ function items (state = itemstate, action) {
 			return state;
 	}
 }
-/*
+
 function user(state = userstate, action) {
 	switch(action.type) {
 		case EDIT_USER:
@@ -88,7 +87,7 @@ function repos(state = {
 			return state;
 	}
 }
-*/
+
 
 const MainAppReducer = combineReducers({
 	items
