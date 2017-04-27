@@ -1,7 +1,11 @@
 import React from 'react';
 import { Connect } from 'react-redux';
+import { fetchPosts } from '../actions/actions';
 
 class FrontComponent extends React.Component {
+  componentDidMount() {
+    fetchPosts();
+  }
   render() {
     return (
         <div>
@@ -10,4 +14,4 @@ class FrontComponent extends React.Component {
       );
   }
 }
-export default Connect(state => state)(FrontComponent);
+export default FrontComponent;

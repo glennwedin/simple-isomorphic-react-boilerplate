@@ -8,7 +8,6 @@ export function editUser(name, age, mail) {
 	return { type: EDIT_USER, name, age, mail }
 }
 
-
 export const REQUEST_REPOS = 'REQUEST_REPOS'
 function requestRepos(repos) {
   return {
@@ -16,7 +15,6 @@ function requestRepos(repos) {
     repos
   }
 }
-
 
 export const RECEIVE_REPOS = 'RECEIVE_REPOS'
 function receiveRepos(repos, json) {

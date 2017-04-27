@@ -35,7 +35,7 @@ class MainComponent extends React.Component {
 						<div id="app">
 							<Route exact path="/" component={FrontComponent} />
 						</div>
-						<script type="text/javascript" src="js/app.js"></script>
+							<script src="./client.js"></script>
 						</body>
 					</html>
 				</Provider>

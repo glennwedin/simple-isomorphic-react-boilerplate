@@ -25,7 +25,7 @@ module.exports = [
         entry: "./src/client.js",
         output: {
             path: __dirname,
-            filename: "./dist/client.js"
+            filename: "./dist/public/client.js"
         },
         module: {
             loaders: [

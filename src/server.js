@@ -7,7 +7,7 @@ import path from "path";
 var app = express();
 
 //Point to static files
-app.use(express.static('public/'));
+app.use(express.static('dist/public/'));
 
 app.get('*', function(req, res) {
     let context = {};
