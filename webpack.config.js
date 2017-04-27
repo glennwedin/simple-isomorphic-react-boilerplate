@@ -7,7 +7,7 @@ module.exports = [
         entry: "./src/server.js",
         output: {
             path: __dirname,
-            filename: "server.js"
+            filename: "./dist/server.js"
         },
         target: 'node',
         module: {
@@ -25,7 +25,7 @@ module.exports = [
         entry: "./src/client.js",
         output: {
             path: __dirname,
-            filename: "./public/js/app.js"
+            filename: "./dist/client.js"
         },
         module: {
             loaders: [

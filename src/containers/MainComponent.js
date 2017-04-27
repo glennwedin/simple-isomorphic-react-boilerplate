@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router";
+import { Route, Link } from "react-router";
 import { Provider } from 'react-redux';
 import { editUser, fetchPosts } from '../actions/actions';
 import store from '../stores/Store';
 import TopMenu from '../components/TopMenu';
+import FrontComponent from '../components/FrontComponent';
 
 class MainComponent extends React.Component {
 
@@ -13,7 +14,7 @@ class MainComponent extends React.Component {
 		let state = store.getState();
 		console.log(state);
 		this.state = {
-			
+
 		};
 	}
 
@@ -31,7 +32,9 @@ class MainComponent extends React.Component {
 					</head>
 					<body>
 						<TopMenu />
-						<div id="app">{this.props.children}</div>
+						<div id="app">
+							<Route exact path="/" component={FrontComponent} />
+						</div>
 						<script type="text/javascript" src="js/app.js"></script>
 						</body>
 					</html>
