@@ -1,10 +1,10 @@
 import React from 'react';
-import { Connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/actions';
 
 class FrontComponent extends React.Component {
   componentDidMount() {
-    fetchPosts();
+    this.props.dispatch(fetchPosts());
   }
   render() {
     return (
@@ -14,4 +14,4 @@ class FrontComponent extends React.Component {
       );
   }
 }
-export default FrontComponent;
+export default connect( state=>state )(FrontComponent);

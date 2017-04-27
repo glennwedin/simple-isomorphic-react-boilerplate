@@ -12160,7 +12160,7 @@ var FrontComponent = function (_React$Component) {
   _createClass(FrontComponent, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      (0, _actions.fetchPosts)();
+      this.props.dispatch((0, _actions.fetchPosts)());
     }
   }, {
     key: 'render',
@@ -12176,7 +12176,9 @@ var FrontComponent = function (_React$Component) {
   return FrontComponent;
 }(_react2.default.Component);
 
-exports.default = FrontComponent;
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return state;
+})(FrontComponent);
 
 /***/ }),
 /* 115 */
