@@ -7,14 +7,14 @@ module.exports = [
         entry: "./src/server.js",
         output: {
             path: __dirname,
-            filename: "server.js"
+            filename: "./dist/server.js"
         },
         target: 'node',
         module: {
             loaders: [
                 {
                     test: /\.js$/,
-                    loader: 'babel'
+                    loader: 'babel-loader'
                 },
                 { test:  /\.json$/, loader: 'json-loader' },
             ]
@@ -25,14 +25,18 @@ module.exports = [
         entry: "./src/client.js",
         output: {
             path: __dirname,
-            filename: "./public/js/app.js"
+            filename: "./dist/public/client.js"
         },
         module: {
             loaders: [
                 {
                     test: /\.js$/,
-                    loader: 'babel',
+                    loader: 'babel-loader',
                     exclude: /node_modules/
+                },
+                {
+                    test: /\.scss$/,
+                    loaders: ["style-loader", "css-loader", "scss-loader", "sass-loader"]
                 }
             ]
         }
